@@ -45,15 +45,18 @@ import { from } from 'rxjs';
     AngularFireAuthModule,
     NgbModule,
     RouterModule.forRoot([
+//routes for anonymous users      
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckoutComponent },
-      { path: 'order-success', component: OrderSuccessComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'my-orders', component: MyOrdersComponent },
-      { path: 'admin/products', component: AdminProductComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent },
+//routes for logged in users
+      { path: 'check-out', component: CheckoutComponent, canActivate: [AuthGaurd] },
+      { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGaurd]  },
+      { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGaurd]  },
+///routes for admins      
+      { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGaurd]  },
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurd]  },
     ])
   ],
   providers: [
