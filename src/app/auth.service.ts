@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class AuthService {
 
   get appUser$(): Observable<AppUser>{
     return this.user$
-    .pipe(switchMap(user => this.userService.get(user.uid).valueChanges()))
+    .pipe(switchMap(user => {
+      if( user ) {
+        return this.userService.get(user.uid).valueChanges();
+      }
+        return of(null);
+    }));
   }
 }
