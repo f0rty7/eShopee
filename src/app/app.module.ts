@@ -1,3 +1,4 @@
+import { AdminAuthGaurdService as AdminAuthGaurd } from './admin-auth-gaurd.service';
 import { UserService } from './user.service';
 import { AuthGaurdService as AuthGaurd } from './auth-gaurd.service';
 import { AuthService } from './auth.service';
@@ -56,13 +57,14 @@ import { from } from 'rxjs';
       { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGaurd]  },
       { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGaurd]  },
 ///routes for admins      
-      { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGaurd]  },
-      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurd]  },
+      { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
     ])
   ],
   providers: [
     AuthService,
     AuthGaurd,
+    AdminAuthGaurd,
     UserService
   ],
   bootstrap: [AppComponent]
