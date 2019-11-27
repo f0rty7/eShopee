@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { AuthGaurdService as AuthGaurd } from './auth-gaurd.service';
 import { AuthService } from './auth.service';
 import { RouterModule } from '@angular/router';
@@ -61,7 +62,8 @@ import { from } from 'rxjs';
   ],
   providers: [
     AuthService,
-    AuthGaurd
+    AuthGaurd,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
