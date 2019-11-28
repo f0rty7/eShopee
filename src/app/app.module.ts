@@ -1,3 +1,4 @@
+import { CategoryService } from './category.service';
 import { AdminAuthGaurdService as AdminAuthGaurd } from './admin-auth-gaurd.service';
 import { UserService } from './user.service';
 import { AuthGaurdService as AuthGaurd } from './auth-gaurd.service';
@@ -24,6 +25,7 @@ import { AdminProductComponent } from './admin/admin-product/admin-product.compo
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
 import { from } from 'rxjs';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { from } from 'rxjs';
     MyOrdersComponent,
     AdminProductComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { from } from 'rxjs';
       { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGaurd]  },
 ///routes for admins      
       { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
+      { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
     ])
   ],
@@ -65,7 +69,8 @@ import { from } from 'rxjs';
     AuthService,
     AuthGaurd,
     AdminAuthGaurd,
-    UserService
+    UserService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
