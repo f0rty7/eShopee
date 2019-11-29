@@ -12,7 +12,6 @@ export class ProductFormComponent implements OnInit {
   categories: any[] = [];
 
   constructor(private categoryService: CategoryService, db: AngularFireDatabase) {
-    // categoryService.getCategories();
   }
 
   save(product){
