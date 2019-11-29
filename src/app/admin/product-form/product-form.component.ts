@@ -1,6 +1,7 @@
+import { ProductService } from './../../product.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { CategoryService } from './../../category.service';
-import { Component, OnInit, DoBootstrap } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-form',
@@ -11,11 +12,11 @@ export class ProductFormComponent implements OnInit {
 
   categories: any[] = [];
 
-  constructor(private categoryService: CategoryService, db: AngularFireDatabase) {
+  constructor(private categoryService: CategoryService, db: AngularFireDatabase, private productService: ProductService) {
   }
 
   save(product){
-    console.log(product);
+    this.productService.create(product);
   }
 
   ngOnInit() {
