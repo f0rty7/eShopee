@@ -9,12 +9,10 @@ import { Component, OnInit, DoBootstrap } from '@angular/core';
 })
 export class ProductFormComponent implements OnInit {
 
-  categories$;
-  product;
+  categories: any[] = [];
 
-  constructor(categoryService: CategoryService, db: AngularFireDatabase) {
-    this.categories$ = categoryService.getCategories();
-    this.product = db.list('categories').valueChanges();
+  constructor(private categoryService: CategoryService, db: AngularFireDatabase) {
+    // categoryService.getCategories();
   }
 
   save(product){
@@ -22,6 +20,13 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
+  this.categoryService.courses$.subscribe(x => {
+    this.categories = x;
+})
+    // this.categories$.subscribe(x => {
+    //   console.log({x})
+    //   this.categories = x;
+    // })
   }
 
 }

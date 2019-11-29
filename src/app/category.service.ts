@@ -6,37 +6,20 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService implements OnInit{
-  category: any;
-  categoryService: CategoryService
+export class CategoryService {
+  
+  courses$: Observable<any[]>;
+  list:  AngularFireList<any>;
+constructor(private db: AngularFireDatabase, ) { 
+  this.list = db.list('/categories');
+  this.courses$ = this.list.snapshotChanges()
+  .pipe(map(changes => {
+    return changes.map(c => ({ key: c.payload.key, ...c.payload.val()}))
+  }));
+}
 
-  constructor(private db: AngularFireDatabase, ) { 
-    // this.category = db.list('/categories').valueChanges();
-    // this.category = db.list('categories').valueChanges();
-  }
-  ngOnInit(){
-    //this.getCategories();
-  }
+getCategories(){
+  console.log(this.courses$)
+  }    
 
-  getCategories(): Observable<any>{
-    return this.db.list('/categories', ref => ref.orderByChild('name')).valueChanges();
-    // this.db.list('/categories').valueChanges().subscribe(val => console.log(val))
-    
-  }
-  // getCategories(){
-  //   return this.getCategories().pipe(map((changes : any) =>
-  //     changes.map(c =>
-  //       ({ key: c.payload.key()})
-  //     )
-  //   )
-  // ).subscribe(category => {
-  //   this.category = category;
-  // });
-    // this.db.list('/categories').valueChanges().subscribe(val => console.log(val))
-    
-  }
-
-  // ngOnInit(){
-  //   this.db.list('/categories').valueChanges().subscribe(val => console.log(val))
-  // }
-
+}
