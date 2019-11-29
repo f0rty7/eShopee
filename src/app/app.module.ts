@@ -65,8 +65,9 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
       { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGaurd]  },
       { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGaurd]  },
 ///routes for admins      
-      { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
+      { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
+      { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
     ])
   ],
