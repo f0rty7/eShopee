@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductService } from './../../product.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { CategoryService } from './../../category.service';
@@ -12,11 +13,17 @@ export class ProductFormComponent implements OnInit {
 
   categories: any[] = [];
 
-  constructor(private categoryService: CategoryService, db: AngularFireDatabase, private productService: ProductService) {
+  constructor(
+    private categoryService: CategoryService,
+    private db: AngularFireDatabase,
+    private productService: ProductService,
+    private router: Router) {
   }
 
   save(product){
     this.productService.create(product);
+    this.router.navigate(['/admin/products']);
+
   }
 
   ngOnInit() {
