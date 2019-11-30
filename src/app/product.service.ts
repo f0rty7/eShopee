@@ -22,10 +22,18 @@ export class ProductService {
   }
 
   getAllProducts(){  
-    console.log(this.product$);  
+    // defined in Oninit in admin-product.component.ts 
   }
 
   getProductID(prodID){
     return this.db.object('/products/' + prodID)
+  }
+
+  updateProduct(prodID, product){
+    return this.db.object('/products/' + prodID).update(product);
+  }
+
+  deleteProduct(prodID){
+    return this.db.object('/products/' + prodID).remove();
   }
 }
