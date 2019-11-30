@@ -13,12 +13,14 @@ export class AppComponent {
 
   constructor(private auth: AuthService, router: Router, private userService: UserService){
     auth.user$.subscribe(user => {
-      if ( user ){
+      if ( !user ) return;
         userService.save(user);
 
         let returnUrl = localStorage.getItem('returnUrl');
-        router.navigateByUrl(returnUrl);
-      }
+        if( returnUrl ){
+          localStorage.removeItem('returnUrl');
+          router.navigateByUrl(returnUrl);
+        }
     });
   }
 }

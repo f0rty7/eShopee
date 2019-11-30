@@ -21,10 +21,13 @@
     "@angular/platform-browser-dynamic": "~8.2.11",
     "@angular/router": "~8.2.11",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
+    "angular-4-data-table": "^0.4.6",
+    "angular5-data-table": "^1.0.3",
     "bootstrap": "^4.3.1",
     "firebase": "^7.5.0",
     "ng2-validation": "^4.2.0",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
