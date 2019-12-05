@@ -24,7 +24,6 @@ export class NavbarComponent {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
     let cart$ = await this.shoppingCartService.getCart();
     cart$.valueChanges().subscribe( cart => {
-      console.log(cart)
       this.shoppingCartItemCount = 0;
       const items = cart['items'];
       for ( let productId in items)

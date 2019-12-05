@@ -10,15 +10,14 @@ import { Component, OnInit } from "@angular/core";
 export class ShoppingCartComponent implements OnInit {
   cart$;
   totalItemsCount: number = 0;
-  items1: ShoppingCart;
   productDetails: any[] = [];
+  totalPrice: number = 0;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
   async ngOnInit() {
     this.cart$ = await this.shoppingCartService.getCart();
     this.cart$.valueChanges().subscribe(x => {
-      console.log({ x });
       for (let productId in x["items"]) {
         this.totalItemsCount += x["items"][productId].quantity;
       }
@@ -27,14 +26,20 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   getProductIds(items) {
-    console.log("ghggh", items);
-    // return Object.keys(this.items1);
     for (let product in items["items"]) {
       this.productDetails.push({
         title: items["items"][product].product.title,
-        quantity: items["items"][product].quantity
+        price: items["items"][product].product.price,
+        quantity: items["items"][product].quantity,
+        itemTotalPrice: items["items"][product].product.price * items["items"][product].quantity,
       });
     }
-    console.log(this.productDetails);
+
+    this.productDetails.forEach((product, i) => {
+      this.totalPrice += product.itemTotalPrice;
+      if(product.quantity === 0) {
+        this.productDetails.splice(i, 1);
+      }
+    })
   }
 }

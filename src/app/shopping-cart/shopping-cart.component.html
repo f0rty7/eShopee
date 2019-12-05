@@ -8,16 +8,23 @@
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
-                <th></th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let product of productDetails">
                 <th>{{product.title}}</th>
                 <th>{{product.quantity}}</th>
-                <th></th>
+                <th>{{product.itemTotalPrice | currency:'INR'}}</th>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>{{ totalPrice }}</th>
+            </tr>
+        </tfoot>
     </table>
 </ng-container>
 
