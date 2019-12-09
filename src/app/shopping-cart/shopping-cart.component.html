@@ -2,10 +2,16 @@
 <ng-container >
     <p>
         You have {{ totalItemsCount }} items in your shopping cart.
+        <button 
+                class="btn btn-light btn-sm" 
+                (click)="clearCart()">
+                Clear Shopping Cart
+        </button>
     </p>
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
@@ -13,6 +19,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let product of productDetails">
+                <td>
+                    <img [src]="product.imageUrl" class="img-thumbnail" alt="product.title">
+                </td>
                 <th>{{product.title}}</th>
                 <th>{{product.quantity}}</th>
                 <th>{{product.itemTotalPrice | currency:'INR'}}</th>
@@ -22,9 +31,11 @@
             <tr>
                 <th></th>
                 <th></th>
-                <th>{{ totalPrice }}</th>
+                <th></th>
+                <th>{{ totalPrice | currency:'INR' }}</th>
             </tr>
         </tfoot>
     </table>
+    <a class="btn btn-primary" routerLink="/check-out">Check Out</a>
 </ng-container>
 

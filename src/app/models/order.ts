@@ -1,0 +1,26 @@
+import { ShoppingCart } from './shopping-cart';
+export class Order{
+    datePlaced: number;
+    items: any;
+    shoppingCart: any = [];
+
+    constructor(
+        public userId: string,
+        public shipping: any,
+        shoppingCart: ShoppingCart
+    ){
+        this.datePlaced = new Date().getTime();
+
+        this.items = this.shoppingCart.map(i => {
+            return {
+              product: {
+                title: i.title,
+                imageUrl: i.imageUrl,
+                price: i.price
+              },
+              itemQuantity: i.quantity,
+              totalPrice: i.quantity * i.price
+            }
+          })
+    }
+}

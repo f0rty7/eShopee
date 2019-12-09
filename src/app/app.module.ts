@@ -69,7 +69,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
       { path: 'login', component: LoginComponent },
 //routes for logged in users
       { path: 'check-out', component: CheckoutComponent, canActivate: [AuthGaurd] },
-      { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGaurd]  },
+      { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGaurd]  },
       { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGaurd]  },
 ///routes for admins      
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },

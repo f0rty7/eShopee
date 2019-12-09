@@ -31,6 +31,7 @@ export class ShoppingCartComponent implements OnInit {
         title: items["items"][product].product.title,
         price: items["items"][product].product.price,
         quantity: items["items"][product].quantity,
+        imageUrl: items["items"][product].product.imageUrl,
         itemTotalPrice: items["items"][product].product.price * items["items"][product].quantity,
       });
     }
