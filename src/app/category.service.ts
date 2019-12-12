@@ -7,10 +7,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CategoryService {
-  
+
   courses$: Observable<any[]>;
   list:  AngularFireList<any>;
-constructor(private db: AngularFireDatabase, ) { 
+constructor(private db: AngularFireDatabase, ) {
   this.list = db.list('/categories');
   this.courses$ = this.list.snapshotChanges()
   .pipe(map(changes => {
@@ -19,7 +19,7 @@ constructor(private db: AngularFireDatabase, ) {
 }
 
 getCategories(){
-  console.log(this.courses$)
-  }    
+  //console.log(this.courses$)
+  }
 
 }

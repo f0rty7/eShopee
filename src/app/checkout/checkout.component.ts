@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
 
   constructor(
-    private shoppingCartService: ShoppingCartService, 
+    private shoppingCartService: ShoppingCartService,
     private orderService: OrdersService,
     private authService: AuthService,
     private router: Router) { }
@@ -45,9 +45,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cartSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
   }
-  
+
   async placeOrder(){
-    console.log(this.cartItems)
+    //console.log(this.cartItems)
     // let orders = new Order(this.userId, this.shipping, this.cart)
 
     let orders = {
@@ -66,7 +66,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         }
       })
     }
-    console.log(orders)
+    //console.log(orders)
     let result = await this.orderService.saveOrders(orders);
     this.router.navigate(['/order-success', result.key])
   }

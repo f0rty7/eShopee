@@ -25,7 +25,7 @@ export class ShoppingCartService {
   private async getOrCreateCartId(): Promise<string>{
     let cartId = localStorage.getItem('cartId');
     if(cartId) return cartId;
-    
+
     let result = await this.create();
     localStorage.setItem('cartId', result.key)
     return result.key;
@@ -41,6 +41,11 @@ export class ShoppingCartService {
     });
     } else item$.set({product: product, quantity: 1});
   });
+  }
+
+  async clearCart() {
+    let cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartId + '/items').remove();
   }
 
   private getItem(cartId, productId){

@@ -24,14 +24,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     route: ActivatedRoute,
     productService: ProductService,
     private shoppingCartSerive: ShoppingCartService,) {
-          
-      productService.product$.pipe(switchMap( products => { 
+
+      productService.product$.pipe(switchMap( products => {
       this.products = products;
       return route.queryParamMap
     }))
     .subscribe(params => {
         this.category =params.get('category');
-        
+
         this.filteredProducts = (this.category) ?
           this.products.filter( p => p.category === this.category ) : this.products
       });
@@ -39,7 +39,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   async ngOnInit(){
     this.subscription = (await this.shoppingCartSerive.getCart()).valueChanges().subscribe(cart => {this.cart = cart;
-    console.log("cart value is ",cart)});
+    //console.log("cart value is ",cart)
+  });
   }
 
   ngOnDestroy(){

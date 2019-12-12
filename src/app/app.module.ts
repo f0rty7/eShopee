@@ -1,3 +1,4 @@
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductService } from './product.service';
 import { CategoryService } from './category.service';
@@ -49,7 +50,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ShoppingCartSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AngularFireAuthModule,
     NgbModule,
     RouterModule.forRoot([
-//routes for anonymous users      
+//routes for anonymous users
       { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
@@ -71,7 +73,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
       { path: 'check-out', component: CheckoutComponent, canActivate: [AuthGaurd] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGaurd]  },
       { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGaurd]  },
-///routes for admins      
+///routes for admins
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
       { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGaurd, AdminAuthGaurd]  },
